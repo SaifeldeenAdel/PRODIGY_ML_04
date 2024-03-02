@@ -2,25 +2,19 @@
 
 ## **Task Details**
 
-Implement a support vector machine (SVM) to classify images of cats and dogs.
+Develop a hand gesture recognition model that can accurately identify and classify different hand gestures from image or video data.
 
 ## **Implementation**
 
-Using this [DATASET](https://www.kaggle.com/c/dogs-vs-cats/data).
+Using this [DATASET](https://www.kaggle.com/datasets/gti-upm/leapgestrecog).
 
-This was my basic workflow:
+Workflow:
 
--   Read image from dataset
--   Resize image to have consistent dimensions
--   Flatten image and add to my data array. (This is done because images are three dimensional while SVMs only accept 1 dimensional data)
--   Add corresponding label to label array
--   Split dataset and fit using `sklearn.svm.SVC`
--   Measure performance by running predictions on new data
+1. Detect hands in our images: I chose to use Google's Hand Detection model MediaPipe which detects hands in the form of landmarks for basically every joint on our hand.
 
-### Parameter tuning
+2. Detect different gestures: Collected all landmark positions for each image in the dataset and that's what I used for training. The model would learn from the relationships between certain landmarks (how far is the thumb landmark from the index landmark, are they curved, etc). 
 
-I ran a `GridSearchCV` in order to decide which pairs of values of `gamma` and `C` are the most optimum for my model.
+Fit my data on a RandomForestClassifier and yielded an accuracy of 99%. When tested on new data, it seems to perform pretty well.
 
-### Dimensionality
 
-One of the problems I faced was how long my model took to fit and I concluded that its because of how many features each image produced. Each image turns into an array of length 451200 which is **a lot** of 'features'. And so this leads to the model taking ages to train. However, reducing the number of features results in a loss of accuracy.
+
