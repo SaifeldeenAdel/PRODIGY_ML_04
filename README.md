@@ -17,4 +17,4 @@ Workflow:
 Fit my data on a RandomForestClassifier and yielded an accuracy of 99%. When tested on new data, it seems to perform pretty well.
 <br>
 
-![Predicitons](predictions.jpg)
+![Predicitons](predictions.JPG)
